@@ -18,14 +18,30 @@ const pwdTemplate = {
                 };
 
 
+function MyPwdException(message) {
+    this.message = message;
+    this.name = 'MyPwdException';
+}
+
+
 function setFilename(f) {
     filename = f;
 }
 
+
 function getValues(entry, keys) {
+    const p = os.homedir + '/' + filename;
     let result = [];
     let d = getEntryFromDict(entry)
+
+    if (d == undefined) {
+        throw new MyPwdException('Entry "' + entry + '" is missing in "' + p + '".');
+    }
+
     keys.forEach(e => {
+        if (d[e] == undefined) {
+            throw new MyPwdException('Key "' + e + '" is missing in "' + entry + '" entry.');
+        }
         result.push(d[e])
     });
     return result;
