@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import * as os from 'os';
-import * as child_process from 'child_process';
+const fs = require('fs');
+const os = require('os');
+const child_process = require('child_process');
 
-const filename = 'mypwd.json';
+let filename = 'mypwd.json';
 const loginKey = 'login';
 const passwordKey = 'password';
 const pwdTemplate = {
@@ -18,22 +18,42 @@ const pwdTemplate = {
                 };
 
 
-export function getValues(entry, keys) {
+function MyPwdException(message) {
+    this.message = message;
+    this.name = 'MyPwdException';
+}
+
+
+function setFilename(f) {
+    filename = f;
+}
+
+
+function getValues(entry, keys) {
+    const p = os.homedir + '/' + filename;
     let result = [];
     let d = getEntryFromDict(entry)
+
+    if (d == undefined) {
+        throw new MyPwdException('Entry "' + entry + '" is missing in "' + p + '".');
+    }
+
     keys.forEach(e => {
+        if (d[e] == undefined) {
+            throw new MyPwdException('Key "' + e + '" is missing in "' + entry + '" entry.');
+        }
         result.push(d[e])
     });
     return result;
 }
 
 
-export function getLogin(entry) {
+function getLogin(entry) {
     return getValues(entry, [loginKey])[0];
 }
 
 
-export function getPassword(entry) {
+function getPassword(entry) {
     return getValues(entry, [passwordKey])[0];
 }
 
@@ -57,3 +77,8 @@ function getEntryFromDict(entry) {
     const cred = JSON.parse(fs.readFileSync(p, 'utf-8'));
     return cred[entry];
 }
+
+module.exports.setFilename = setFilename;
+module.exports.getValues = getValues;
+module.exports.getLogin = getLogin;
+module.exports.getPassword = getPassword;
