@@ -1,0 +1,25 @@
+{
+  "name": "mypwd",
+  "version": "1.0.0",
+  "description": "Very simple password manager for my js projects",
+  "main": "mypwd.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berk76/mypwd-js.git"
+  },
+  "keywords": [
+    "mypwd"
+  ],
+  "author": "Jaroslav Beran",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/berk76/mypwd-js/issues"
+  },
+  "homepage": "https://github.com/berk76/mypwd-js#readme",
+  "devDependencies": {},
+  "dependencies": {}
+}
