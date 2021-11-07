@@ -2,18 +2,18 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as child_process from 'child_process';
 
-let filename = 'mypwd.json';
-let loginKey = 'login';
-let passwordKey = 'password';
-let pwdTemplate = {
+const filename = 'mypwd.json';
+const loginKey = 'login';
+const passwordKey = 'password';
+const pwdTemplate = {
                     'postgres': {
-                        login_key: 'john',
-                        password_key: 'myPa$$w0rd',
+                        'login': 'john',
+                        'password': 'myPa$$w0rd',
                         'note': 'Valid until end of month'
                     },
                     'mongo': {
-                        login_key: 'admin',
-                        password_key: 'myPa$$w0rd2'
+                        'login': 'admin',
+                        'password': 'myPa$$w0rd2'
                     }
                 };
 
@@ -52,4 +52,8 @@ function getEntryFromDict(entry) {
         const cred = JSON.parse(stdout);
         return cred[entry]; 
     }
+
+    fs.writeFileSync(p, JSON.stringify(pwdTemplate, null, 2))
+    const cred = JSON.parse(fs.readFileSync(p, 'utf-8'));
+    return cred[entry];
 }
