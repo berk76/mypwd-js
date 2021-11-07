@@ -27,7 +27,7 @@ Create file `mypwd.json` with passwords in your `$HOME` directory. For example `
 Now you can access your secrets from js code and you will never commit secret anymore.
 
 ```js
-import * as mypwd from 'mypwd';
+import * as mypwd from '@berk76/mypwd';
 
 [login, password, server] = mypwd.getValues('mongo-uat', ['login', 'password', 'server']);
 ```
@@ -48,7 +48,7 @@ You should store your passwords in encrypted file `mypwd.json.gpg` instead of in
 Installation is simple:
 
 ```
-npm install mypwd
+npm install @berk76/mypwd
 ```
 
 ## Contribution
