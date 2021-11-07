@@ -27,7 +27,7 @@ Create file `mypwd.json` with passwords in your `$HOME` directory. For example `
 Now you can access your secrets from js code and you will never commit secret anymore.
 
 ```js
-import * as mypwd from '@berk76/mypwd';
+const mypwd = require('@berk76/mypwd');
 
 let login, password, server;
 [login, password, server] = mypwd.getValues('mongo-uat', ['login', 'password', 'server']);
