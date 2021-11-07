@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "Very simple password manager for my js projects",
   "main": "mypwd.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +19,8 @@
     "url": "https://github.com/berk76/mypwd-js/issues"
   },
   "homepage": "https://github.com/berk76/mypwd-js#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
   "dependencies": {}
 }

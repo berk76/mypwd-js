@@ -1,8 +1,8 @@
-import * as fs from 'fs';
-import * as os from 'os';
-import * as child_process from 'child_process';
+const fs = require('fs');
+const os = require('os');
+const child_process = require('child_process');
 
-const filename = 'mypwd.json';
+let filename = 'mypwd.json';
 const loginKey = 'login';
 const passwordKey = 'password';
 const pwdTemplate = {
@@ -18,7 +18,11 @@ const pwdTemplate = {
                 };
 
 
-export function getValues(entry, keys) {
+function setFilename(f) {
+    filename = f;
+}
+
+function getValues(entry, keys) {
     let result = [];
     let d = getEntryFromDict(entry)
     keys.forEach(e => {
@@ -28,12 +32,12 @@ export function getValues(entry, keys) {
 }
 
 
-export function getLogin(entry) {
+function getLogin(entry) {
     return getValues(entry, [loginKey])[0];
 }
 
 
-export function getPassword(entry) {
+function getPassword(entry) {
     return getValues(entry, [passwordKey])[0];
 }
 
@@ -57,3 +61,8 @@ function getEntryFromDict(entry) {
     const cred = JSON.parse(fs.readFileSync(p, 'utf-8'));
     return cred[entry];
 }
+
+module.exports.setFilename = setFilename;
+module.exports.getValues = getValues;
+module.exports.getLogin = getLogin;
+module.exports.getPassword = getPassword;
