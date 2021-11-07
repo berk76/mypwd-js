@@ -13,7 +13,7 @@ Create file `mypwd.json` with passwords in your `$HOME` directory. For example `
   "mongo-uat": {
     "login": "appl",
     "password": "hS78#pbTgc#J.CQL",
-    "server": "myserver-uat.com",
+    "server": "myserver-uat.com"
   },
   "mongo-dev": {
     "login": "appl",
@@ -29,6 +29,7 @@ Now you can access your secrets from js code and you will never commit secret an
 ```js
 import * as mypwd from '@berk76/mypwd';
 
+let login, password, server;
 [login, password, server] = mypwd.getValues('mongo-uat', ['login', 'password', 'server']);
 ```
 
