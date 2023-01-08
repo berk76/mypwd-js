@@ -1,10 +1,9 @@
 name: Publish Npm Package
 
 on:
-  workflow_dispatch:
   push:
-  #  tags:
-  #  - 'v*'
+    tags:
+    - 'v*'
 
 jobs:
   build:
@@ -17,6 +16,6 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm publish --dry-run
+      - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PASSWORD }}
